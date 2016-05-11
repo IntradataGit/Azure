@@ -25,7 +25,7 @@ workflow routing_sentinel
         $DatabaseConnection = New-Object System.Data.SqlClient.SqlConnection
         $DatabaseCommand = New-Object System.Data.SqlClient.SqlCommand
 
-        Write-Output "Opening database connection on $ServerName"
+        Write-Output "Connecting to database $ServerName"
 		
         # Setup connection string
         $DatabaseConnection.ConnectionString = "Server=$ServerName; Database=iddb-carerix-routing; User ID=$UserId; Password=$Password;"
