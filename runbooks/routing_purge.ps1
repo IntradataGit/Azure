@@ -14,24 +14,24 @@ workflow routing_purge
 
 	inlinescript
     {
-		Write-Output "Starting routing.purge"
+        Write-Output "Starting routing.purge"
 		
         # Setup credentials   
         $ServerName = $Using:SqlServerName
         $UserId = $Using:Credential.UserName
         $Password = ($Using:Credential).GetNetworkCredential().Password
 
-		# Create connection for each individual database
+        # Create connection for each individual database
         $DatabaseConnection = New-Object System.Data.SqlClient.SqlConnection
         $DatabaseCommand = New-Object System.Data.SqlClient.SqlCommand
 
-		Write-Output "Connecting to database $ServerName"
+        Write-Output "Connecting to database $ServerName"
 
-		# Setup connection string
+        # Setup connection string
         $DatabaseConnection.ConnectionString = "Server=$ServerName; Database=iddb-carerix-routing; User ID=$UserId; Password=$Password;"
         $DatabaseConnection.Open();
 
-		Write-Output "Executing stored procedure"
+        Write-Output "Executing stored procedure"
 
         # Create command
         $DatabaseCommand.Connection = $DatabaseConnection
@@ -40,9 +40,9 @@ workflow routing_purge
         # Execute query and return single scalar result 
         $DatabaseCommand.ExecuteScalar()
         
-		Write-Output "Executed routing.purge"
+        Write-Output "Executed routing.purge"
 			
-		# Close connection
-		$DatabaseConnection.Close();
+        # Close connection
+        $DatabaseConnection.Close();
 	}		
 }
