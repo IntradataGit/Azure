@@ -35,7 +35,8 @@ workflow routing_sentinel_staging
 		
         # Create command
         $DatabaseCommand.Connection = $DatabaseConnection
-        $DatabaseCommand.CommandText = "EXEC routing.sentinel"
+        $DatabaseCommand.CommandTimeout = 120
+		$DatabaseCommand.CommandText = "EXEC routing.sentinel"
 
         # Execute query and return single scalar result 
         $DatabaseCommand.ExecuteScalar()
