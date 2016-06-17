@@ -14,7 +14,7 @@ workflow routing_purge
 
 	inlinescript
     {
-        Write-Output "Starting routing.purge"
+        Write-Output "Starting routing.purge on production"
 		
         # Setup credentials   
         $ServerName = $Using:SqlServerName
@@ -35,7 +35,8 @@ workflow routing_purge
 
         # Create command
         $DatabaseCommand.Connection = $DatabaseConnection
-        $DatabaseCommand.CommandText = "EXEC routing.purge"
+        $DatabaseCommand.CommandTimeout = 120
+		$DatabaseCommand.CommandText = "EXEC routing.purge"
 
         # Execute query and return single scalar result 
         $DatabaseCommand.ExecuteScalar()
