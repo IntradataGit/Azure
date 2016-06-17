@@ -35,7 +35,8 @@ workflow routing_janitor
 			
         # Create command
         $DatabaseCommand.Connection = $DatabaseConnection
-        $DatabaseCommand.CommandText = "EXEC routing.janitor"
+        $DatabaseCommand.ConnectionTimeout = 120
+		$DatabaseCommand.CommandText = "EXEC routing.janitor"
 
         # Execute query and return single scalar result 
         $DatabaseCommand.ExecuteScalar()
