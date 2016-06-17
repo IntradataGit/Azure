@@ -14,7 +14,7 @@ workflow routing_sentinel
 
 	inlinescript
     {
-		Write-Output "Starting routing.sentinel"
+		Write-Output "Starting routing.sentinel on production"
 		
         # Setup credentials   
         $ServerName = $Using:SqlServerName
@@ -35,7 +35,8 @@ workflow routing_sentinel
 		
         # Create command
         $DatabaseCommand.Connection = $DatabaseConnection
-        $DatabaseCommand.CommandText = "EXEC routing.sentinel"
+        $DatabaseCommand.CommandTimeout = 120
+		$DatabaseCommand.CommandText = "EXEC routing.sentinel"
 
         # Execute query and return single scalar result 
         $DatabaseCommand.ExecuteScalar()
